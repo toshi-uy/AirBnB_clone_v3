@@ -80,9 +80,10 @@ class DBStorage:
         if cls and id:
             objects = self.all(cls)
             print(objects)
-            for key, value in objects:
-                if key == cls:
-                    return value
+            for key in objects:
+                print(key)
+                if key.get(id) == cls:
+                    return key
         return None
 
     def count(self, cls=None):
