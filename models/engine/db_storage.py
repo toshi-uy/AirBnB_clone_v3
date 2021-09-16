@@ -83,8 +83,8 @@ class DBStorage:
             for key in objects:
                 print(type(key))
                 print(key)
-                if key.__class__.__name__ == cls:
-                    return key
+                if key == cls + "." + id:
+                    return objects[key]
         return None
 
     def count(self, cls=None):
