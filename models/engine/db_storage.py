@@ -81,7 +81,7 @@ class DBStorage:
             objects = self.all(cls)
             print(objects)
             for obj in objects:
-                if objects.__class__.__name__ == cls and objects.id == id:
+                if obj.__class__.__name__ + "." + obj.id == cls + "." + id:
                     return obj
         return None
 
