@@ -158,6 +158,7 @@ No known bugs at this time.
 
 ## Authors
 Toshi Borgia - [Github](https://github.com/toshi-uy) / [Email](mailto:2785@holbertonschool.com)
+
 Ezequiel Martinez - [Github](https://github.com/ezedksl) / [Email](mailto:2383@holbertonschool.com)
 
 Third part of Airbnb
