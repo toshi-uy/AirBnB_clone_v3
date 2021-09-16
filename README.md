@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/6JaLQ4z.png" width=50% align=center>
+<center> <img src="https://i.imgur.com/6JaLQ4z.png" width=50%>
 
 # AirBnB Clone - The Console
 
