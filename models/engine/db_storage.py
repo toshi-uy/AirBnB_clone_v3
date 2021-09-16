@@ -82,7 +82,7 @@ class DBStorage:
             print(objects)
             for key in objects:
                 print(key)
-                if key.get(id) == cls:
+                if key.__class__.__name__ == cls:
                     return key
         return None
 
