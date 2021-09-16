@@ -79,9 +79,9 @@ class DBStorage:
         """method to retrieve one object"""
         if cls and id:
             objects = self.all(cls)
-            print(type(objects))
+            print(objects)
             for key, value in objects:
-                if key == cls + "." + id:
+                if key == cls:
                     return value
         return None
 
