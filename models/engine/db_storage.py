@@ -81,6 +81,7 @@ class DBStorage:
             objects = self.all(cls)
             print(objects)
             for key in objects:
+                print(type(key))
                 print(key)
                 if key.__class__.__name__ == cls:
                     return key
