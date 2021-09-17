@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""App file"""
 from os import getenv
 from flask import Flask
 from models import storage
