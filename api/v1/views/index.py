@@ -16,5 +16,8 @@ def status():
 def counting():
     for key, value in classes.items():
         count = storage.count(value)
-        classes[key] = count
+        if count == 0:
+            classes[key] = 0
+        else:
+            classes[key] = count
         return jsonify(classes)
