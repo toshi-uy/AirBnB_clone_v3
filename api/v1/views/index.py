@@ -4,8 +4,9 @@ from api.v1.views import app_views
 from flask import jsonify
 from models import storage
 
-classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
-           "Place": Place, "Review": Review, "State": State, "User": User}
+classes = {"Amenity": 'Amenity', "BaseModel": 'BaseModel', "City": 'City',
+           "Place": 'Place', "Review": 'Review',"State": 'State',
+           "User": 'User'}
 
 @app_views.route("/status")
 def status():
