@@ -8,6 +8,7 @@ classes = {"Amenity": 'Amenity', "BaseModel": 'BaseModel', "City": 'City',
            "Place": 'Place', "Review": 'Review',"State": 'State',
            "User": 'User'}
 
+
 @app_views.route("/status")
 def status():
     return jsonify({'status': 'OK'})
