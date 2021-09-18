@@ -22,7 +22,17 @@ def status():
 @app_views.route("/stats")
 def stats():
     """ Returns number of each objects by type """
-    for key, value in classes.items():
-        count = storage.count(value)
-        classes[key] = count
-    return jsonify(classes)
+    objects = {"amenities": storage.count("Amenity"),
+               "cities": storage.count("City"),
+               "places": storage.count("Place"),
+               "reviews": storage.count("Review"),
+               "states": storage.count("State"),
+               "users": storage.count("User")}
+    return jsonify(objects)
+
+# def stats():
+#     """ Returns number of each objects by type """
+#     for key, value in classes.items():
+#         count = storage.count(value)
+#         classes[key] = count
+#     return jsonify(classes)
