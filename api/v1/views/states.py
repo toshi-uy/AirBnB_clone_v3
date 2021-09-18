@@ -5,7 +5,7 @@ from flask import jsonify, abort, make_response, request
 from models import storage
 from models.state import State
 
-@app_views.route('/states/', methods=['GET'], strict_slashes=False)
+@app_views.route('/states', methods=['GET'], strict_slashes=False)
 @app_views.route('/states/<state_id>', methods=['GET'])
 def all_states(state_id=None):
     """Returns all state objects handeling states id"""
