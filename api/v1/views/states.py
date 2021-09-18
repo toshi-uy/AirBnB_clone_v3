@@ -18,7 +18,7 @@ def all_states(state_id=None):
     if get_state is None:
         abort(404)
     else:
-        jsonify(get_state.to_dict())
+        return jsonify(get_state.to_dict())
 
 @app_views.route('/states/<state_id>', methods=['DELETE'])
 def delete(state_id=None):
