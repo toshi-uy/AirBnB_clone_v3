@@ -37,9 +37,9 @@ def creates():
     get_states = request.get_json()
     if not get_states:
         abort(400, 'Not a JSON')
-    elif "name" not in get_states:
+    elif 'name' not in get_states:
         abort(400, 'Missing name')
-    new_obj = State(get_states['name'])
+    new_obj = State(name=get_states['name'])
     storage.new(new_obj)
     storage.save()
     return jsonify(new_obj.to_dict()), 201
