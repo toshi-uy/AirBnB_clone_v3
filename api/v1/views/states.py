@@ -10,15 +10,14 @@ from models.state import State
 def all_states(state_id=None):
     """Returns all state objects handeling states id"""
     states = []
-    for key, value in storage.all(State).items():
-        states.append(value.to_dict)
+    for value in storage.all(State).values():
+        states.append(value.to_dict())
     if not state_id:
         return jsonify(states)
     get_state = storage.get(State, state_id)
     if get_state is None:
         abort(404)
-    else:
-        return jsonify(get_state.to_dict())
+    return jsonify(get_state.to_dict())
 
 @app_views.route('/states/<state_id>', methods=['DELETE'])
 def delete(state_id=None):
