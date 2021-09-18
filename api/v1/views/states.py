@@ -11,7 +11,7 @@ def all_states(state_id=None):
     """Returns all state objects handeling states id"""
     states = []
     for key, value in storage.all('State').items():
-        states.append(list(value.to_dict()))
+        states.append(value.to_dict)
     if not state_id:
         return jsonify(states)
     get_state = storage.get(State, state_id)
