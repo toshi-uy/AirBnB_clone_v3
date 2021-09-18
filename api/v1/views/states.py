@@ -10,7 +10,7 @@ from models.state import State
 def all_states(state_id=None):
     """Returns all state objects handeling states id"""
     states = []
-    for key, value in storage.all('State').items():
+    for key, value in storage.all(State).items():
         states.append(value.to_dict)
     if not state_id:
         return jsonify(states)
