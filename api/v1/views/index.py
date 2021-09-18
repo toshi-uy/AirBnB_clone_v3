@@ -19,5 +19,6 @@ def counting():
     """ Returns number of each objects by type """
     for key, value in classes.items():
         count = storage.count(value)
+        print(count)
         classes[key] = count
         return jsonify(classes)
