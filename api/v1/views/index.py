@@ -5,7 +5,7 @@ from flask import jsonify
 from models import storage
 
 classes = {"amenities": 'Amenity', "cities": 'City',
-           "places": 'Place', "reviews": 'Review',"states": 'State',
+           "places": 'Place', "reviews": 'Review', "states": 'State',
            "users": 'User'}
 
 
