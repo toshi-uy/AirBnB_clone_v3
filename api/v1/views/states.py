@@ -24,12 +24,10 @@ def delete(state_id=None):
     """Deletes a state objects by id"""
     get_state = storage.get(State, state_id)
     if get_state is not None:
-        for key, value in get_state.items():
-            if state_id == value.id:
-                storage.delete(value)
-                storage.save()
-                return make_response(jsonify({}), 200)
-        abort(404)
+        storage.delete(get_state)
+        storage.save()
+        return make_response(jsonify({}), 200)
+    abort(404)
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def creates():
