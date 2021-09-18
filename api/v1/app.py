@@ -1,4 +1,5 @@
-"""Runs"""
+#!/usr/bin/python3
+"""App file"""
 from os import getenv
 from flask import Flask, jsonify, make_response
 from models import storage
@@ -14,8 +15,8 @@ def close(self):
 @app.errorhandler(404)
 def page_not_found(e):
     """ 404 handler """
-    resp = {"error": "Not found"}
-    return make_response(jsonify(resp), 404)
+    status = {"error": "Not found"}
+    return make_response(jsonify(status), 404)
 
 if __name__ == '__main__':
     app.run(host=getenv("HBNB_API_HOST", "0.0.0.0"),
