@@ -6,6 +6,7 @@ from models import storage
 from models.state import State
 from models.city import City
 
+
 @app_views.route('states/<state_id>/cities', methods=['GET'],
                  strict_slashes=False)
 @app_views.route('/cities/<city_id>', methods=['GET'])
@@ -24,6 +25,7 @@ def all_cities(state_id=None, city_id=None):
         abort(404)
     return jsonify(get_city.to_dict())
 
+
 @app_views.route('/cities/<city_id>', methods=['DELETE'])
 def delete_city(city_id=None):
     """Deletes a city objects by id"""
@@ -33,6 +35,7 @@ def delete_city(city_id=None):
         storage.save()
         return make_response(jsonify({}), 200)
     abort(404)
+
 
 @app_views.route('states/<state_id>/cities', methods=['POST'],
                  strict_slashes=False)
@@ -50,6 +53,7 @@ def creates_city(state_id=None):
     storage.new(new_obj)
     storage.save()
     return jsonify(new_obj.to_dict()), 201
+
 
 @app_views.route('/cities/<city_id>', methods=['PUT'])
 def update_city(city_id=None):
