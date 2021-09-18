@@ -53,7 +53,8 @@ def update(state_id=None):
         if not state:
             abort(404)
         for key, value in get_states.items():
-            setattr(state, key, value)
+            if key not in ["id", "created_at", "updated_at"]:
+                setattr(state, key, value)
         state.save()
         return make_response(jsonify(state.to_dict()), 200)
     else:
