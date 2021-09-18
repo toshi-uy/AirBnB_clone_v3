@@ -9,8 +9,7 @@ from models.city import City
 
 @app_views.route('states/<state_id>/cities', methods=['GET'],
                  strict_slashes=False)
-@app_views.route('/cities/<city_id>', methods=['GET'])
-def all_cities(state_id=None, city_id=None):
+def all_cities(state_id=None):
     """Returns all city objects handeling cities id"""
     states = storage.get(State, state_id)
     if not states:
@@ -18,8 +17,12 @@ def all_cities(state_id=None, city_id=None):
     cities = []
     for value in states.cities:
         cities.append(value.to_dict())
-    if not city_id:
-        return jsonify(cities)
+    return jsonify(cities)
+
+@app_views.route('/cities/<city_id>', methods=['GET'],
+                 strict_slashes=False)
+def one_cities(city_id=None):
+    """Returns a city by city id"""
     get_city = storage.get(City, city_id)
     if get_city is None:
         abort(404)
