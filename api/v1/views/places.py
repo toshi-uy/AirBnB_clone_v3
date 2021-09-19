@@ -6,6 +6,7 @@ from models import storage
 from models import place
 from models.city import City
 from models.place import Place
+from models.user import User
 
 
 @app_views.route('cities/<city_id>/places', methods=['GET'],
@@ -52,9 +53,15 @@ def creates_place(city_id=None):
     get_places = request.get_json()
     if not get_places:
         abort(400, 'Not a JSON')
+    elif 'user_id' not in get_places:
+        abort(400, 'Missing user_id')
     elif 'name' not in get_places:
         abort(400, 'Missing name')
-    new_obj = Place(name=get_places['name'], city_id=cities.id)
+
+    user = storage.get(User, get_places['user_id'])
+    if not user:
+        abort(404)
+    new_obj = Place(name=get_places['name'], city_id=cities.id, user_id=user.id)
     storage.new(new_obj)
     storage.save()
     return jsonify(new_obj.to_dict()), 201

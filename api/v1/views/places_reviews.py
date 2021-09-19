@@ -5,6 +5,7 @@ from flask import jsonify, abort, make_response, request
 from models import storage
 from models.place import Place
 from models.review import Review
+from models.user import User
 
 
 @app_views.route('places/<place_id>/reviews', methods=['GET'],
@@ -44,15 +45,20 @@ def delete_review(review_id=None):
 @app_views.route('places/<place_id>/reviews', methods=['POST'],
                  strict_slashes=False)
 def creates_review(place_id=None):
-    """Creates a review object"""
+    """ Creates a review object """
     places = storage.get(Place, place_id)
     if not places:
         abort(404)
     get_reviews = request.get_json()
     if not get_reviews:
         abort(400, 'Not a JSON')
-    elif 'name' not in get_reviews:
-        abort(400, 'Missing name')
+    elif 'text' not in get_reviews:
+        abort(400, 'Missing text')
+    elif 'user_id' not in get_reviews:
+        abort(400, 'Missing user_id')
+    user = storage.get(User, get_reviews['user_id'])
+    if not user:
+        abort(404)
     new_obj = Review(name=get_reviews['name'], place_id=places.id)
     storage.new(new_obj)
     storage.save()

@@ -44,9 +44,8 @@ def creates_user():
         abort(400, 'Missing password')
     elif 'email' not in get_users:
         abort(400, 'Missing email')
-    new_obj = User(password=get_users['password'], email=get_users['email'])
-    storage.new(new_obj)
-    storage.save()
+    new_obj = User(email=get_users['email'], password=get_users['password'])
+    new_obj.save()
     return jsonify(new_obj.to_dict()), 201
 
 
