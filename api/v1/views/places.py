@@ -8,7 +8,6 @@ from models.city import City
 from models.place import Place
 
 
-
 @app_views.route('cities/<city_id>/places', methods=['GET'],
                  strict_slashes=False)
 def all_places(city_id=None):
@@ -20,6 +19,7 @@ def all_places(city_id=None):
     for value in cities.places:
         places.append(value.to_dict())
     return jsonify(places)
+
 
 @app_views.route('/places/<place_id>', methods=['GET'],
                  strict_slashes=False)
@@ -66,11 +66,11 @@ def update_place(place_id=None):
     place = storage.get(Place, place_id)
     if not place:
         abort(404)
-    
+
     get_places = request.get_json()
     if not get_places:
         abort(400, 'Not a JSON')
-    
+
     for key, value in get_places.items():
         if key not in ["id", "user_id", "city_id",
                        "created_at", "updated_at"]:

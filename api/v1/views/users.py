@@ -42,7 +42,9 @@ def creates_user():
         abort(400, 'Missing name')
     elif 'password' not in get_users:
         abort(400, 'Missing password')
-    new_obj = User(name=get_users['name'])
+    elif 'email' not in get_users:
+        abort(400, 'Missing email')
+    new_obj = User(password=get_users['password'], email=get_users['email'])
     storage.new(new_obj)
     storage.save()
     return jsonify(new_obj.to_dict()), 201
@@ -54,11 +56,11 @@ def update_user(user_id=None):
     user = storage.get(User, user_id)
     if not user:
         abort(404)
-    
+
     get_users = request.get_json()
     if not get_users:
         abort(400, 'Not a JSON')
-    
+
     for key, value in get_users.items():
         if key not in ["id", "email", "created_at", "updated_at"]:
             setattr(user, key, value)

@@ -19,6 +19,7 @@ def all_cities(state_id=None):
         cities.append(value.to_dict())
     return jsonify(cities)
 
+
 @app_views.route('/cities/<city_id>', methods=['GET'],
                  strict_slashes=False)
 def one_cities(city_id=None):
@@ -64,11 +65,11 @@ def update_city(city_id=None):
     city = storage.get(City, city_id)
     if not city:
         abort(404)
-    
+
     get_cities = request.get_json()
     if not get_cities:
         abort(400, 'Not a JSON')
-    
+
     for key, value in get_cities.items():
         if key not in ["id", "state_id", "created_at", "updated_at"]:
             setattr(city, key, value)
