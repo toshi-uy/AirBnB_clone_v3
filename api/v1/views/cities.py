@@ -52,7 +52,7 @@ def creates_city(state_id=None):
         abort(400, 'Not a JSON')
     elif 'name' not in get_cities:
         abort(400, 'Missing name')
-    new_obj = City(name=get_cities['name'])
+    new_obj = City(name=get_cities['name'], state_id=states.id)
     storage.new(new_obj)
     storage.save()
     return jsonify(new_obj.to_dict()), 201
