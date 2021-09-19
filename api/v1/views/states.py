@@ -22,7 +22,7 @@ def all_states(state_id=None):
 
 
 @app_views.route('/states/<state_id>', methods=['DELETE'])
-def delete(state_id=None):
+def delete_state(state_id=None):
     """Deletes a state objects by id"""
     get_state = storage.get(State, state_id)
     if get_state is not None:
@@ -33,7 +33,7 @@ def delete(state_id=None):
 
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
-def creates():
+def creates_state():
     """Creates a state object"""
     get_states = request.get_json()
     if not get_states:
@@ -47,7 +47,7 @@ def creates():
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'])
-def update(state_id=None):
+def update_state(state_id=None):
     """Updates a state objects by id"""
     state = storage.get(State, state_id)
     if not state:
