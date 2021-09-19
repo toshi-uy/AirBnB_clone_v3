@@ -43,12 +43,10 @@ def creates_user():
     get_users = request.get_json()
     if not get_users:
         abort(400, 'Not a JSON')
-    elif 'name' not in get_users:
-        abort(400, 'Missing name')
-    elif 'password' not in get_users:
-        abort(400, 'Missing password')
     elif 'email' not in get_users:
         abort(400, 'Missing email')
+    elif 'password' not in get_users:
+        abort(400, 'Missing password')
     new_obj = User(email=get_users['email'], password=get_users['password'])
     new_obj.save()
     return jsonify(new_obj.to_dict()), 201
