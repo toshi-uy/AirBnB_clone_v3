@@ -6,24 +6,24 @@ from models import storage
 from models.user import User
 
 
-@app_views.route('/users', methods=['GET'], strict_slashes=False)
+@app_views.route('/users', methods=['GET'],
+                 strict_slashes=False)
 def all_users():
     """Returns all user objects handeling users id"""
     users = []
     for value in storage.all(User).values():
         users.append(value.to_dict())
-    if not user_id:
-        return jsonify(users)
+    return jsonify(users), 200
+
+
+@app_views.route('/users/<user_id>', methods=['GET'],
+                 strict_slashes=False)
+def one_user(user_id=None):
+    """Returns a user by user id"""
     get_user = storage.get(User, user_id)
     if get_user is None:
         abort(404)
-    return jsonify(get_user.to_dict())
-
-
-@app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
-def one_user(user_id):
-    """Returns a user object by id"""
-    user = storage.get(User, user_id)
+    return jsonify(get_user.to_dict()), 200
 
 
 @app_views.route('/users/<user_id>', methods=['DELETE'])
