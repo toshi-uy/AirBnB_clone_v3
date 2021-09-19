@@ -7,8 +7,7 @@ from models.user import User
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
-@app_views.route('/users/<user_id>', methods=['GET'])
-def all_users(user_id=None):
+def all_users():
     """Returns all user objects handeling users id"""
     users = []
     for value in storage.all(User).values():
@@ -21,8 +20,14 @@ def all_users(user_id=None):
     return jsonify(get_user.to_dict())
 
 
+@app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
+def one_user(user_id):
+    """Returns a user object by id"""
+    user = storage.get(User, user_id)
+
+
 @app_views.route('/users/<user_id>', methods=['DELETE'])
-def delete_user(user_id=None):
+def delete_user(user_id):
     """Deletes a user objects by id"""
     get_user = storage.get(User, user_id)
     if get_user is not None:

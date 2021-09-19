@@ -61,7 +61,8 @@ def creates_place(city_id=None):
     user = storage.get(User, get_places['user_id'])
     if not user:
         abort(404)
-    new_obj = Place(name=get_places['name'], city_id=cities.id, user_id=user.id)
+    new_obj = Place(name=get_places['name'], city_id=cities.id,
+                    user_id=user.id)
     storage.new(new_obj)
     storage.save()
     return jsonify(new_obj.to_dict()), 201
