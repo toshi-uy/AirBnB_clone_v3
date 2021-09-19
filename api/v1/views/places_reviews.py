@@ -59,9 +59,10 @@ def creates_review(place_id=None):
     user = storage.get(User, get_reviews['user_id'])
     if not user:
         abort(404)
-    new_obj = Review(name=get_reviews['name'], place_id=places.id)
-    storage.new(new_obj)
-    storage.save()
+    new_obj = Review(user_id=get_reviews['user_id'],
+                     place_id=get_reviews['place_id'],
+                     text=get_reviews['text'])
+    new_obj.save()
     return jsonify(new_obj.to_dict()), 201
 
 

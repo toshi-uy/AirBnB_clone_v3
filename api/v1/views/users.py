@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Users module"""
 from api.v1.views import app_views
-from flask import jsonify, abort, make_response, request
+from flask import jsonify, abort, request
 from models import storage
 from models.user import User
 
@@ -33,7 +33,7 @@ def delete_user(user_id):
     if get_user is not None:
         storage.delete(get_user)
         storage.save()
-        return make_response(jsonify({}), 200)
+        return jsonify({}), 200
     abort(404)
 
 
