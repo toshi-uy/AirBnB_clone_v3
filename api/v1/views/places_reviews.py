@@ -60,7 +60,7 @@ def creates_review(place_id=None):
     user = storage.get(User, get_reviews['user_id'])
     if not user:
         abort(404)
-    new_obj = Review(place_id=get_reviews['place_id'],
+    new_obj = Review(place_id=place_id,
                      user_id=get_reviews['user_id'],
                      text=get_reviews['text'])
     new_obj.save()
