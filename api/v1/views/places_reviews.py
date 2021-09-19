@@ -53,10 +53,10 @@ def creates_review(place_id=None):
     get_reviews = request.get_json()
     if not get_reviews:
         abort(400, 'Not a JSON')
-    elif 'text' not in get_reviews:
-        abort(400, 'Missing text')
     elif 'user_id' not in get_reviews:
         abort(400, 'Missing user_id')
+    elif 'text' not in get_reviews:
+        abort(400, 'Missing text')
     user = storage.get(User, get_reviews['user_id'])
     if not user:
         abort(404)
