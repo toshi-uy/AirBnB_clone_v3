@@ -39,7 +39,7 @@ def delete_review(review_id=None):
     if get_review is not None:
         storage.delete(get_review)
         storage.save()
-        return make_response(jsonify({}), 200)
+        return jsonify({}), 200
     abort(404)
 
 
@@ -60,8 +60,8 @@ def creates_review(place_id=None):
     user = storage.get(User, get_reviews['user_id'])
     if not user:
         abort(404)
-    new_obj = Review(user_id=get_reviews['user_id'],
-                     place_id=get_reviews['place_id'],
+    new_obj = Review(place_id=get_reviews['place_id'],
+                     user_id=get_reviews['user_id'],
                      text=get_reviews['text'])
     new_obj.save()
     return jsonify(new_obj.to_dict()), 201
