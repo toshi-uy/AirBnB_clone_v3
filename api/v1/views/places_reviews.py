@@ -23,7 +23,7 @@ def all_reviews(place_id=None):
 @app_views.route('/reviews/<review_id>', methods=['GET'],
                  strict_slashes=False)
 def one_review(review_id=None):
-    """Returns a reveiw by review id"""
+    """Returns a review by review id"""
     get_review = storage.get(Review, review_id)
     if get_review is None:
         abort(404)
