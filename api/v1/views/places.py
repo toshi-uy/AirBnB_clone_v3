@@ -85,3 +85,15 @@ def update_place(place_id=None):
             setattr(place, key, value)
     place.save()
     return jsonify(place.to_dict()), 200
+
+@app_views.route('/places_search', methods=['POST'],
+                 strict_slashes=False)
+def places_search():
+    """ Gets all places object"""
+    get_place = request.get_json()
+    if not get_place:
+        abort(400, 'Not a JSON')
+
+    storage.new(get_place)
+    storage.save()
+    return jsonify(get_place.to_dict()), 201
