@@ -57,8 +57,15 @@ def creates_place_amenity(place_id, amenity_id):
     amenity = storage.get(Amenity, amenity_id)
     if not amenity:
         abort(400)
-    if amenity not in place.amenities or amenity_id not in place.amenity_ids:
-        new_obj = Amenity(place_id=place_id, amenity_id=amenity_id)
-        new_obj.save()
-        return jsonify(new_obj.to_dict()), 201
-    return jsonify(amenity.to_dict()), 200
+    if environ.get('HBNB_TYPE_STORAGE') == "db":
+        if amenity in place.amenities:
+            return jsonify(amenity.to_dict()), 200
+        else:
+            place.amenities.append(amenity)
+    else:
+        if amenity_id in place.amenity_ids:
+            return jsonify(amenity.to_dict()), 200
+        else:
+            place.amenity_ids.append(amenity)
+    storage.save()
+    return jsonify(amenity.to_dict()), 201
