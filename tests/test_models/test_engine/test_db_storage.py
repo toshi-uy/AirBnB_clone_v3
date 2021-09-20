@@ -92,8 +92,11 @@ class TestDBStorage(unittest.TestCase):
         """Test that get properly"""
         state = State(name="Testing_State")
         state.save()
+        user = User(name="Test_user")
+        user.save()
         self.assertEqual(models.storage.get(State, state.id), state)
         self.assertEqual(models.storage.get(State, "CARLOS"), None)
+        self.assertEqual(models.storage.get(User, user.id), user)
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):
