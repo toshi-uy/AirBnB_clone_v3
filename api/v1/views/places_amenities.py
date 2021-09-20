@@ -8,7 +8,7 @@ from models.place import Place
 from models.amenity import Amenity
 
 
-@app_views.route('places/<place_id>/amenities', methods=['GET'],
+@app_views.route('/places/<place_id>/amenities', methods=['GET'],
                  strict_slashes=False)
 def all_place_amenities(place_id):
     """Returns all amenities from a place object"""
@@ -25,7 +25,7 @@ def all_place_amenities(place_id):
     return jsonify(amenities)
 
 
-@app_views.route('places/<place_id>/amenities/<amenity_id>',
+@app_views.route('/places/<place_id>/amenities/<amenity_id>',
                  methods=['DELETE'], strict_slashes=False)
 def delete_place_amenity(place_id, amenity_id):
     """Deletes an amenity objects by id"""
@@ -47,7 +47,7 @@ def delete_place_amenity(place_id, amenity_id):
     return jsonify({}), 200
 
 
-@app_views.route('places/<place_id>/amenities/<amenity_id>', methods=['POST'],
+@app_views.route('/places/<place_id>/amenities/<amenity_id>', methods=['POST'],
                  strict_slashes=False)
 def creates_place_amenity(place_id, amenity_id):
     """ Creates an amenity object """
