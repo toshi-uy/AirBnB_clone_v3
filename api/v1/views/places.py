@@ -85,4 +85,3 @@ def update_place(place_id=None):
             setattr(place, key, value)
     place.save()
     return jsonify(place.to_dict()), 200
-
