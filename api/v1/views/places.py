@@ -87,7 +87,7 @@ def update_place(place_id=None):
     return jsonify(place.to_dict()), 200
 
 
-@app_views.route('/places_search', methods=['POST'],
+@app_views.route('/places_search', methods=['POST', 'GET'],
                  strict_slashes=False)
 def places_search():
     """ Gets all places object"""
