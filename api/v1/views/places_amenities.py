@@ -9,7 +9,7 @@ from models.amenity import Amenity
 
 @app_views.route('places/<place_id>/amenities', methods=['GET'],
                  strict_slashes=False)
-def all_amenities1(place_id):
+def all_place_amenities(place_id):
     """Returns all amenities from a place object"""
     places = storage.get(Place, place_id)
     if not places:
@@ -23,7 +23,7 @@ def all_amenities1(place_id):
 
 @app_views.route('places/<place_id>/amenities/<amenity_id>',
                  methods=['DELETE'], strict_slashes=False)
-def delete_amenity(place_id, amenity_id):
+def delete_place_amenity(place_id, amenity_id):
     """Deletes an amenity objects by id"""
     place = storage.get(Place, place_id)
     if not place:
@@ -40,7 +40,7 @@ def delete_amenity(place_id, amenity_id):
 
 @app_views.route('places/<place_id>/amenities/<amenity_id>', methods=['POST'],
                  strict_slashes=False)
-def creates_amenity(place_id, amenity_id):
+def creates_place_amenity(place_id, amenity_id):
     """ Creates an amenity object """
     place = storage.get(Place, place_id)
     if not place:
