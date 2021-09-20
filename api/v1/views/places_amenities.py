@@ -4,8 +4,6 @@ from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from models import storage
 from models.place import Place
-from models.review import Review
-from models.user import User
 from models.amenity import Amenity
 
 
@@ -54,4 +52,4 @@ def creates_amenity(place_id, amenity_id):
         new_obj = Amenity(place_id=place_id, amenity_id=amenity_id)
         new_obj.save()
         return jsonify(new_obj.to_dict()), 201
-    return amenity, 200
+    return jsonify(amenity.to_dict()), 200
