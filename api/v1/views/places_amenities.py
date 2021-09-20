@@ -18,8 +18,7 @@ def all_place_amenities(place_id):
     amenities = []
     if environ.get('HBNB_TYPE_STORAGE') == "db":
         for value in places.amenities:
-            if value.place_id == place_id:
-                amenities.append(value.to_dict())
+            amenities.append(value.to_dict())
     else:
         for value in places.amenity_ids:
             amenities.append(storage.get(Amenity, value).to_dict())
